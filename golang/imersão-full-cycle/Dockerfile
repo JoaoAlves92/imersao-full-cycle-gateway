@@ -1,0 +1,9 @@
+FROM golang:1.17
+
+WORKDIR /go/src
+COPY . .
+ENV GOPROXY=https://goproxy.io,direct
+RUN apt-get update && apt-get install build-essential librdkafka-dev -y
+RUN go build -o /go/bin/gateway cmd/main.go 
+
+CMD ["/go/bin/gateway"]

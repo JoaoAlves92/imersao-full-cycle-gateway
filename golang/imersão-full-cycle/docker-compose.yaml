@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  goprocessor:
+    container_name: goprocessor
+    build: .
+    volumes:
+      - .:/go/src/
+    networks:
+      - gateway-net
+    # extra_hosts:
+    #   - "host.docker.internal:172.17.0.1"
+
+networks:
+  gateway-net:
+    external: true

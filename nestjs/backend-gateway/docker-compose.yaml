@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nest:
+    container_name: nest
+    hostname: nest
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    networks:
+      - gateway-net
+    # extra_hosts:
+    #   - "host.docker.internal:172.17.0.1"
+    command: ['./.docker/entrypoint.sh']
+
+networks:
+  gateway-net:
+    external: true
