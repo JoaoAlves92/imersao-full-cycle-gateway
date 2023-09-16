@@ -9,6 +9,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/golang/mock v1.6.0 // indirect
+	github.com/joho/godotenv v1.5.1
 	github.com/maragudk/migrate v0.4.3
 	github.com/mattn/go-sqlite3 v1.14.17
 	github.com/pmezard/go-difflib v1.0.0 // indirect

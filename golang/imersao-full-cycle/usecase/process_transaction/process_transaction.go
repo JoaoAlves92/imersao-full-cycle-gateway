@@ -1,6 +1,8 @@
 package process_transaction
 
 import (
+	"log"
+
 	"github.com/JoaoAlves92/imersao5-gateway/adapter/broker"
 	"github.com/JoaoAlves92/imersao5-gateway/domain/entity"
 	"github.com/JoaoAlves92/imersao5-gateway/domain/repository"
@@ -88,6 +90,7 @@ func (p *ProcessTransaction) Execute(input TransactionDtoInput) (TransactionDtoO
 func (p *ProcessTransaction) publish(output TransactionDtoOutput, key []byte) error {
 	err := p.Producer.Publish(output, key, p.Topic)
 	if err != nil {
+		log.Print("não publicou producer", err)
 		return err
 	}
 

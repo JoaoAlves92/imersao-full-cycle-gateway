@@ -10,6 +10,7 @@ import { OrderStatus, OrderStatusTranslate } from "@/utils/models";
 import { fetcher } from "@/lib/api";
 import useSWR from "swr";
 import Router from "next/router";
+import { formatCurrency } from "@/utils/price";
 
 const OrdersPage = (props: any) => {
   const columns: GridColDef[] = [
@@ -19,9 +20,9 @@ const OrdersPage = (props: any) => {
       width: 300,
       renderCell: (params) => {
         return (
-          <Link href={`/orders/${params.value}`} passHref>
-            <MuiLink>{params.value}</MuiLink>
-          </Link>
+          <MuiLink component={Link} href={`/orders/${params.value}`}>
+            {params.value}
+          </MuiLink>
         );
       },
     },
@@ -29,12 +30,13 @@ const OrdersPage = (props: any) => {
       field: "amount",
       headerName: "Valor",
       width: 100,
+      valueFormatter: (params) => formatCurrency(params.value),
     },
     {
       field: "credit_card_number",
       headerName: "Núm. Cartão Crédito",
       width: 200,
-      sortable: false
+      sortable: false,
     },
     {
       field: "credit_card_name",
@@ -70,7 +72,7 @@ const OrdersPage = (props: any) => {
       <Typography component="h2" variant="h4">
         Minhas ordens
       </Typography>
-      <DataGrid sx={{mt: 4}} columns={columns} rows={data} />
+      <DataGrid sx={{ mt: 4 }} columns={columns} rows={data} />
     </div>
   );
 };

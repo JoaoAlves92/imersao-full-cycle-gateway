@@ -1,6 +1,8 @@
 package kafka
 
 import (
+	"log"
+
 	"github.com/JoaoAlves92/imersao5-gateway/adapter/presenter"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -17,6 +19,7 @@ func NewKafkaProducer(configMap *ckafka.ConfigMap, presenter presenter.Presenter
 func (p *Producer) Publish(msg interface{}, key []byte, topic string) error {
 	producer, err := ckafka.NewProducer(p.ConfigMap)
 	if err != nil {
+		log.Print("Erro no producer", err)
 		return err
 	}
 	err = p.Presenter.Bind(msg)

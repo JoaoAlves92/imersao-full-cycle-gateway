@@ -44,7 +44,7 @@ services:
   
   goprocessor:
     extends:
-      file: ./golang/imersão-full-cycle/docker-compose.yaml
+      file: ./golang/imersao-full-cycle/docker-compose.yaml
       service: goprocessor
     depends_on:
       - kafka

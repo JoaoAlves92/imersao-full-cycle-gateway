@@ -5,6 +5,7 @@ import Router, { useRouter } from "next/router";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { fetcher } from "@/lib/api";
 import { formatCurrency } from "@/utils/price";
+import { OrderStatus, OrderStatusTranslate } from "@/utils/models";
 
 const OrderShowPage = () => {
   const router = useRouter();
@@ -21,6 +22,7 @@ const OrderShowPage = () => {
       },
     }
   );
+
   return data ? (
     <div>
       <Card>
@@ -39,23 +41,29 @@ const OrderShowPage = () => {
           <Box
             sx={{
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
-              alignItems: "baseline",
+              alignItems: "center",
               mb: 2,
             }}
           >
             <Typography component="h2" variant="h3" color="text.primary">
               {formatCurrency(data.amount)}
             </Typography>
+
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              <Typography component="li" variant="subtitle1">
+                Número do cartão: <span>{data.credit_card_number}</span>
+              </Typography>
+              <Typography component="li" variant="subtitle1">
+                Nome do cartão: <span>{data.credit_card_name}</span>
+              </Typography>
+              <Typography component="li" variant="subtitle1">
+                Status:{" "}
+                <span>{OrderStatusTranslate[data.status as OrderStatus]}</span>
+              </Typography>
+            </ul>
           </Box>
-          <ul style={{ listStyle: "none" }}>
-            <Typography component="li" variant="subtitle1">
-              {data.credit_card_number}
-            </Typography>
-            <Typography component="li" variant="subtitle1">
-              {data.credit_card_name}
-            </Typography>
-          </ul>
         </CardContent>
       </Card>
     </div>
