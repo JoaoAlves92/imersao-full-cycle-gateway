@@ -20,6 +20,11 @@ import { ClientsModule, Transport, ClientKafka } from '@nestjs/microservices';
               clientId: process.env.KAFKA_CLIENT_ID,
               brokers: [process.env.KAFKA_HOST],
               ssl: process.env.KAFKA_USE_SSL === 'true',
+              sasl: {
+                mechanism: 'plain',
+                username: process.env.KAFKA_SASL_USERNAME,
+                password: process.env.KAFKA_SASL_PASSWORD,
+              },
             },
             consumer: {
               groupId: process.env.KAFKA_CONSUMER_GROUP_ID,
