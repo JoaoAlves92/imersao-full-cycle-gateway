@@ -11,6 +11,7 @@ import { fetcher } from "@/lib/api";
 import useSWR from "swr";
 import Router from "next/router";
 import { formatCurrency } from "@/utils/price";
+import { BreadCrumbs } from "@/ui-kit";
 
 const OrdersPage = (props: any) => {
   const columns: GridColDef[] = [
@@ -69,7 +70,13 @@ const OrdersPage = (props: any) => {
 
   return (
     <div style={{ height: "400px", width: "100%" }}>
-      <Typography component="h2" variant="h4">
+      <BreadCrumbs
+        crumbs={[
+          { href: "/", label: "Início", color: "inherit", underline: "hover" },
+          { href: "/orders", label: "Pedidos", color: "text.primary" },
+        ]}
+      />
+      <Typography component="h2" variant="h4" mt={2}>
         Minhas ordens
       </Typography>
       <DataGrid sx={{ mt: 4 }} columns={columns} rows={data} />

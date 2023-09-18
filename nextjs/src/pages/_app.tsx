@@ -7,6 +7,7 @@ import theme from "../styles/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import { Container } from "@mui/material";
 import { Navbar } from "@/components";
+import '../styles/credit-card-item.css';
 
 const clientSideEmotionCache = createEmotionCache();
 

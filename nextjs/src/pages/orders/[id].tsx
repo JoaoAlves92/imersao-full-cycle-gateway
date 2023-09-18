@@ -6,6 +6,7 @@ import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { fetcher } from "@/lib/api";
 import { formatCurrency } from "@/utils/price";
 import { OrderStatus, OrderStatusTranslate } from "@/utils/models";
+import { BreadCrumbs } from "@/ui-kit";
 
 const OrderShowPage = () => {
   const router = useRouter();
@@ -25,7 +26,27 @@ const OrderShowPage = () => {
 
   return data ? (
     <div>
-      <Card>
+      <BreadCrumbs
+        crumbs={[
+          { href: "/", label: "Início", color: "inherit", underline: "hover" },
+          {
+            href: "/orders",
+            label: "Pedidos",
+            underline: "hover",
+            color: "inherit",
+          },
+          {
+            href: `/orders/${data.id}`,
+            label: `${data.id}`,
+            color: "text.primary",
+          },
+        ]}
+      />
+      <Card
+        sx={{
+          mt: 4,
+        }}
+      >
         <CardHeader
           title="Order"
           subheader={data.id}
@@ -53,14 +74,28 @@ const OrderShowPage = () => {
 
             <ul style={{ listStyle: "none", padding: 0 }}>
               <Typography component="li" variant="subtitle1">
-                Número do cartão: <span>{data.credit_card_number}</span>
+                <Typography component="span" color="primary.main">
+                  Status:
+                </Typography>
+                <Typography component="span" sx={{ float: "right", ml: 4 }}>
+                  {OrderStatusTranslate[data.status as OrderStatus]}
+                </Typography>
               </Typography>
               <Typography component="li" variant="subtitle1">
-                Nome do cartão: <span>{data.credit_card_name}</span>
+                <Typography component="span" color="primary.main">
+                  Nome do cartão:
+                </Typography>{" "}
+                <Typography component="span" sx={{ float: "right", ml: 4 }}>
+                  {data.credit_card_name}
+                </Typography>
               </Typography>
               <Typography component="li" variant="subtitle1">
-                Status:{" "}
-                <span>{OrderStatusTranslate[data.status as OrderStatus]}</span>
+                <Typography component="span" color="primary.main">
+                  Número do cartão:
+                </Typography>{" "}
+                <Typography component="span" sx={{ float: "right", ml: 4 }}>
+                  {data.credit_card_number}
+                </Typography>
               </Typography>
             </ul>
           </Box>
