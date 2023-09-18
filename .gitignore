@@ -4,4 +4,5 @@
 
 # Ignorar todos os arquivos .env, exceto .env.example
 **/.env
+**/.env.production
 !.env.example

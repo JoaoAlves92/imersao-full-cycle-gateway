@@ -1,17 +1,19 @@
-FROM node:14-alpine3.12
+FROM node:16-alpine3.12
 
-RUN apk add --no-cache bash curl && \
-    curl https://raw.githubusercontent.com/eficode/wait-for/v2.1.3/wait-for --output /usr/bin/wait-for && \
-    chmod +x /usr/bin/wait-for
+USER node
 
-RUN npm install -g @nestjs/cli@8.0.0
-
-USER node 
+RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
-COPY . .
+COPY --chown=node package*.json ./
 
 RUN npm install
 
-CMD ["npm", "start"]
+COPY --chown=node ./ .
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start:prod"]

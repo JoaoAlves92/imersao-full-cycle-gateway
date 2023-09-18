@@ -13,7 +13,7 @@ services:
       - gateway-net
     # extra_hosts:
     #   - "host.docker.internal:172.17.0.1"
-    command: ['./.docker/entrypoint.sh']
+    # command: ['./.docker/entrypoint.sh']
 
 networks:
   gateway-net:
