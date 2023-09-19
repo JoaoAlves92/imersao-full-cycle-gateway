@@ -1,14 +1,24 @@
 import React from "react";
 import { Box } from "@mui/material";
+import CardValidator from "creditcardutils";
+import { FormValues } from "@/pages/payment";
 
-const CreditCardItem = () => {
+type CreditCardItemProps = {
+  values: FormValues;
+  isCvvFocused: boolean;
+};
+
+const CreditCardItem = ({ values, isCvvFocused }: CreditCardItemProps) => {
+  const cardType = CardValidator.parseCardType(values.credit_card_number);
+
   return (
     <Box className="flip-card">
       <Box
         className="flip-card-inner"
+        style={isCvvFocused ? { transform: "rotateY(180deg)" } : {}}
       >
         <Box className="flip-card-front">
-          <p className="heading_8264">MASTERCARD</p>
+          <p className="heading_8264">{cardType}</p>
           <svg
             className="logo"
             xmlns="http://www.w3.org/2000/svg"
@@ -121,16 +131,16 @@ const CreditCardItem = () => {
               MDowMIXeN6gAAAAASUVORK5CYII="
             ></image>
           </svg>
-          <p className="number">9759 2484 5269 6576</p>
+          <p className="number">{values.credit_card_number}</p>
           <p className="valid_thru">VALID THRU</p>
           <p className="date_8264">1 2 / 2 4</p>
-          <p className="name">BRUCE WAYNE</p>
+          <p className="name">{values.credit_card_name}</p>
         </Box>
         <Box className="flip-card-back">
           <Box className="strip"></Box>
           <Box className="mstrip"></Box>
           <Box className="sstrip">
-            <p className="code">***</p>
+            <p className="code">{values.credit_card_cvv}</p>
           </Box>
         </Box>
       </Box>

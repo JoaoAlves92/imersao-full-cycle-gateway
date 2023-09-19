@@ -26,7 +26,7 @@ async function Payment(req: NextApiRequest, res: NextApiResponse) {
       `${process.env.NEST_API_HOST}/orders`,
       {
         amount,
-        credit_card_number,
+        credit_card_number: credit_card_number.replace(/\s/g, ''),
         credit_card_name,
         credit_card_expiration_month,
         credit_card_expiration_year,

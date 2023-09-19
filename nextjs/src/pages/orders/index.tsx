@@ -80,6 +80,15 @@ const OrdersPage = (props: any) => {
         Minhas ordens
       </Typography>
       <DataGrid sx={{ mt: 4 }} columns={columns} rows={data} />
+
+      <MuiLink
+        sx={{ display: "block", mt: 4 }}
+        component={Link}
+        href="/payment"
+        title="Pagamento"
+      >
+        Faça um Pagamento aqui
+      </MuiLink>
     </div>
   );
 };

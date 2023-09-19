@@ -1,10 +1,21 @@
-import { Typography, Box, TextField, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  TextField,
+  Button,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
+import HelpIcon from "@mui/icons-material/Help";
 import { useRouter } from "next/dist/client/router";
 import { FormEvent } from "react";
 import axios from "axios";
+import { GetServerSideProps } from "next";
 
-const LoginPage = () => {
+const LoginPage = (props: any) => {
+  const {account_test} = props;
   const router = useRouter();
+
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
 
@@ -38,6 +49,16 @@ const LoginPage = () => {
           required
           fullWidth
           label="Token da conta"
+          helperText={
+            <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
+              Não sabe né?
+              <Tooltip title="Usa esse aqui então mx4gugo0pqr" placement="top-start">
+                <IconButton color="inherit" size="small">
+                  <HelpIcon fontSize="inherit" />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+          }
         />
         <Button
           type="submit"

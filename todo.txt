@@ -1,8 +1,0 @@
-prometheus
-
-- dockerfile
-- rota de métricas no nestjs
-
-grafana
-
-- dockerfile

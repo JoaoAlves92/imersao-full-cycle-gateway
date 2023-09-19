@@ -20,7 +20,7 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "axios": "^1.5.0",
-    "card-validator": "^8.1.1",
+    "creditcardutils": "^1.0.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "formik": "^2.4.5",
@@ -28,8 +28,13 @@
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-number-format": "^5.3.1",
     "swr": "^2.2.2",
     "typescript": "5.2.2",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/creditcardutils": "^1.0.0",
+    "@types/react-input-mask": "^3.0.2"
   }
 }

@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { Box, Container, Typography, Link as MuiLink } from "@mui/material";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,7 +11,26 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <main>
+        <Container>
+          <Box>
+            <Typography color="inherit">
+              Me perdoe, não tem nada pra ver aqui ainda :c
+            </Typography>
+            <Typography color="inherit">
+              mas você pode ir para a página de{" "}
+              <MuiLink component={Link} href="/orders" title="Pedidos">
+                Pedidos
+              </MuiLink>{" "}
+              e fazer um{" "}
+              <MuiLink component={Link} href="/payments" title="Pagamento">
+                Pagamento
+              </MuiLink>
+              .
+            </Typography>
+          </Box>
+        </Container>
+      </main>
     </>
   );
 }

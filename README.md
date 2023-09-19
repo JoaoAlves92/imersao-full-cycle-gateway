@@ -20,3 +20,11 @@ Projeto da imersão 5.0 da [FullCycle](https://fullcycle.com.br) desenvolvido pa
 ## Referência
 
  - [Imersão FullCycle 5](https://github.com/codeedu/imersaofc5/tree/main)
+
+## TODO
+
+- Implementar banco relacional
+- Novos métodos de pagamento
+- Login de usuários
+- Prometheus
+- Grafana
