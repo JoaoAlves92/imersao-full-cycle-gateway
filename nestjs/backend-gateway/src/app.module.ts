@@ -8,6 +8,7 @@ import { join } from 'path';
 import { Order } from './orders/entities/order.entity';
 import { AccountsModule } from './accounts/accounts.module';
 import { Account } from './accounts/entities/account.entity';
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { Account } from './accounts/entities/account.entity';
       // },
     }),
     AccountsModule,
+    PrometheusModule.register({})
   ],
   controllers: [AppController],
   providers: [AppService],
