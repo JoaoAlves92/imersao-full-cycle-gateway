@@ -12,7 +12,8 @@ import (
 	"github.com/JoaoAlves92/imersao5-gateway/usecase/process_transaction"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/joho/godotenv"
-	_ "github.com/mattn/go-sqlite3"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -22,10 +23,17 @@ func main() {
 		log.Fatalf("Erro ao carregar arquivo .env: %v", err)
 	}
 
-	db, err := sql.Open("sqlite3", "test.db")
+	db, err := sql.Open("mysql", os.Getenv("DSN"))
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer db.Close()
+
+	if err := db.Ping(); err != nil {
+		log.Fatalf("failed to ping: %v", err)
+	}
+
+	log.Println("Successfully connected to PlanetScale!")
 
 	repositoryFactory := factory.NewRepositoryDatabaseFactory(db)
 	repository := repositoryFactory.CreateTransactionRepository()
