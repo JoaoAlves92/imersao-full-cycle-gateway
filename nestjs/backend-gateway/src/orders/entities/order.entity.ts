@@ -1,8 +1,6 @@
 import {
-  BelongsTo,
   Column,
   DataType,
-  ForeignKey,
   Model,
   PrimaryKey,
   Table,
@@ -18,11 +16,11 @@ export enum OrderStatus {
 @Table({
   tableName: 'orders',
   createdAt: 'created_at',
-  updatedAt: 'created_at',
+  updatedAt: 'updated_at',
 })
 export class Order extends Model {
   @PrimaryKey
-  @Column({ type: DataType.UUIDV4, defaultValue: DataType.UUIDV4 })
+  @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
   id: string;
 
   @Column({ allowNull: false, type: DataType.DECIMAL(10, 2) })
@@ -37,10 +35,10 @@ export class Order extends Model {
   @Column({ allowNull: false, defaultValue: OrderStatus.Pending })
   status: OrderStatus;
 
-  @ForeignKey(() => Account)
-  @Column({ allowNull: false, type: DataType.UUIDV4 })
+  @Column({ allowNull: false })
   account_id: string;
 
-  @BelongsTo(() => Account)
-  account: Account;
+  async getAccount(): Promise<Account | null> {
+    return Account.findOne({ where: { id: this.account_id } });
+  }
 }

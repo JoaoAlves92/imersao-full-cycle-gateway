@@ -15,11 +15,20 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
     ConfigModule.forRoot(),
     OrdersModule,
     SequelizeModule.forRoot({
-      dialect: 'sqlite',
-      storage: join(__dirname, 'database.sqlite'),
+      dialect: process.env.DB_CONNECTION as any,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadModels: true,
       models: [Order, Account],
-      synchronize: true
+      synchronize: true,
+      dialectOptions: {
+        ssl: {
+          rejectUnauthorized: true
+        }
+      }
       // sync: {
       //   alter: true,
       //   // force: true,

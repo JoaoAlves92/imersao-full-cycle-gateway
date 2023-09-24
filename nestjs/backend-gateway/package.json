@@ -30,6 +30,7 @@
     "@nestjs/sequelize": "^8.0.0",
     "@willsoto/nestjs-prometheus": "^5.5.0",
     "kafkajs": "^1.15.0",
+    "mysql2": "^3.6.1",
     "prom-client": "^14.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
