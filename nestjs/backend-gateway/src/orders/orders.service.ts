@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { AccountStorageService } from 'src/accounts/account-storage/account-storage.service';
 import { EmptyResultError } from 'sequelize';
 import { Producer } from '@nestjs/microservices/external/kafka.interface';
+import { MetricsService } from 'src/config/metrics/metrics.service';
 
 @Injectable()
 export class OrdersService {
@@ -14,6 +15,7 @@ export class OrdersService {
     private accountStorage: AccountStorageService,
     @Inject('KAFKA_PRODUCER')
     private kafkaProducer: Producer,
+    private readonly metricService: MetricsService
   ) {}
 
   async create(createOrderDto) {
@@ -30,6 +32,7 @@ export class OrdersService {
         },
       ],
     });
+    this.metricService.payment_created_count.inc()
     return order;
   }
 

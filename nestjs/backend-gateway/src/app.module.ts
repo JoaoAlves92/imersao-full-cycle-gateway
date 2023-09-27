@@ -4,11 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrdersModule } from './orders/orders.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { join } from 'path';
 import { Order } from './orders/entities/order.entity';
 import { AccountsModule } from './accounts/accounts.module';
 import { Account } from './accounts/entities/account.entity';
-import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { MetricsModule } from './config/metrics/metrics.module';
 
 @Module({
   imports: [
@@ -26,16 +25,16 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
       synchronize: true,
       dialectOptions: {
         ssl: {
-          rejectUnauthorized: true
-        }
-      }
+          rejectUnauthorized: true,
+        },
+      },
       // sync: {
       //   alter: true,
       //   // force: true,
       // },
     }),
     AccountsModule,
-    PrometheusModule.register({})
+    MetricsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

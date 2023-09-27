@@ -5,11 +5,13 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Order } from './entities/order.entity';
 import { AccountsModule } from 'src/accounts/accounts.module';
 import { ClientsModule, Transport, ClientKafka } from '@nestjs/microservices';
+import { MetricsModule } from 'src/config/metrics/metrics.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([Order]),
     AccountsModule,
+    MetricsModule,
     ClientsModule.registerAsync([
       {
         name: 'KAFKA_SERVICE',
