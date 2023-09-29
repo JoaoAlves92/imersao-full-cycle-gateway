@@ -3,6 +3,7 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 import { Account } from './entities/account.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
+import { CreateAccountDto } from './dto/create-account.dto';
 
 @Injectable()
 export class AccountsService {
@@ -11,8 +12,8 @@ export class AccountsService {
     private accountModel: typeof Account,
   ) {}
 
-  create(createAccountDto) {
-    return this.accountModel.create(createAccountDto);
+  create(createAccountDto: CreateAccountDto) {
+    return this.accountModel.create({...createAccountDto});
   }
 
   findAll() {

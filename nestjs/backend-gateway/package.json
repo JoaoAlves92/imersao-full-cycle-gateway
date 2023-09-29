@@ -29,6 +29,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/sequelize": "^8.0.0",
     "@willsoto/nestjs-prometheus": "^5.5.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "kafkajs": "^1.15.0",
     "mysql2": "^3.6.1",
     "prom-client": "^14.2.0",

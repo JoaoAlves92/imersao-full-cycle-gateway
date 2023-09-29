@@ -6,6 +6,7 @@ import { AccountStorageService } from 'src/accounts/account-storage/account-stor
 import { EmptyResultError } from 'sequelize';
 import { Producer } from '@nestjs/microservices/external/kafka.interface';
 import { MetricsService } from 'src/config/metrics/metrics.service';
+import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
 export class OrdersService {
@@ -18,7 +19,7 @@ export class OrdersService {
     private readonly metricService: MetricsService
   ) {}
 
-  async create(createOrderDto) {
+  async create(createOrderDto: CreateOrderDto) {
     const order = await this.orderModel.create({
       ...createOrderDto,
       account_id: this.accountStorage.account.id,
